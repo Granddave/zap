@@ -39,3 +39,13 @@ function zapcmp() {
     local completion_file="$(basename "${completion_file_path}")"
     [ "$initialize_completion" = true ] && compinit "${completion_file:1}"
 }
+
+function _zap_pull_repo() {
+    local repo_path="$1"
+    git -C "$repo_path" fetch #> /dev/null 2>&1
+    git -C "$repo_path" checkout origin/master #> /dev/null 2>&1
+}
+
+function zapupdate() {
+    _zap_pull_repo "$ZAP_DIR"
+}

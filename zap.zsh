@@ -3,7 +3,7 @@
 export ZAP_DIR="$HOME/.local/share/zap"
 export ZAP_PLUGIN_DIR="$ZAP_DIR/plugins"
 
-function plug() {
+plug() {
 	plugin="$1"
     if [ -f "$plugin" ]; then
 		source "$plugin"
@@ -29,7 +29,7 @@ function plug() {
 	fi
 }
 
-function _pull () {
+_pull () {
     echo "🔌$1"
     git pull > /dev/null 1>&1
     if [ $? -ne 0 ]; then
@@ -107,7 +107,7 @@ Version () {
   echo "⚡Zap Version v$ver" 
 }
 
-function zap() {
+zap() {
     local command="$1"
     if [[ "$command" == "-v" ]] || [[ "$command" == "--version" ]]; then
        Version;
